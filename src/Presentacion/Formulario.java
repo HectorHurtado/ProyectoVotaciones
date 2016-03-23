@@ -1,9 +1,21 @@
 /*
+
+
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Presentacion;
+
+import Logica.ConectarBD;
+import Logica.Municipio;
+import Logica.Votante;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,7 +25,12 @@ public class Formulario extends javax.swing.JFrame {
 
     /**
      * Creates new form Formulario
-     */
+
+*/
+    
+    Municipio  objMun=new Municipio();
+    Votante objVot= new Votante();
+    
     public Formulario() {
         initComponents();
     }
@@ -39,9 +56,9 @@ public class Formulario extends javax.swing.JFrame {
         btnRegistrarMunicipio = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txtIdMunicipio = new javax.swing.JTextField();
+        btnAtrasMunicipio = new javax.swing.JButton();
         JDVotante = new javax.swing.JDialog();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -52,8 +69,6 @@ public class Formulario extends javax.swing.JFrame {
         btnActualizarVotante = new javax.swing.JButton();
         btnBuscarVotante = new javax.swing.JButton();
         btnEliminarVotante = new javax.swing.JButton();
-        lblResultadoMesaVotante = new javax.swing.JLabel();
-        txtIdVotante = new javax.swing.JTextField();
         txtNombreVotante = new javax.swing.JTextField();
         txtCedulaVotante = new javax.swing.JTextField();
         txtSexoVotante = new javax.swing.JTextField();
@@ -63,11 +78,55 @@ public class Formulario extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         cmbMesaVotante = new javax.swing.JComboBox();
+        btnVotar = new javax.swing.JButton();
+        btnAtrasVotante = new javax.swing.JButton();
         JDPartido = new javax.swing.JDialog();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        cmbMunicipioPartido = new javax.swing.JComboBox();
+        btnRegistrarPartido = new javax.swing.JButton();
+        btnBuscarPartido = new javax.swing.JButton();
+        btnActualizarPartido = new javax.swing.JButton();
+        btnEliminarPartido = new javax.swing.JButton();
+        btnAtrasPartido = new javax.swing.JButton();
+        txtIdPartido = new javax.swing.JTextField();
+        txtNombrePartido = new javax.swing.JTextField();
+        txtSiglasPartido = new javax.swing.JTextField();
+        txtDireccionPartido = new javax.swing.JTextField();
         JDColegio = new javax.swing.JDialog();
         JDCandidato = new javax.swing.JDialog();
         JDMesa = new javax.swing.JDialog();
         JDJurado = new javax.swing.JDialog();
+        JDMesaDeVotacionVotante = new javax.swing.JDialog();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        lblNombreConsultaMesa = new javax.swing.JLabel();
+        lblMunicipioConsultaMesa = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        lblMesaConsultaMesa = new javax.swing.JLabel();
+        lblDireccionConsultaMesa = new javax.swing.JLabel();
+        txtCedulaConsultarMesa = new javax.swing.JTextField();
+        btnConsultarMesaDeVotacion = new javax.swing.JButton();
+        AtrasConsultarMesaDeVotacion = new javax.swing.JButton();
+        JDCartonDeVotaciones = new javax.swing.JDialog();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        cmbAlcaldesCarton = new javax.swing.JComboBox();
+        jLabel32 = new javax.swing.JLabel();
+        btbVotarAlcaldeCarton = new javax.swing.JButton();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        txtCedulaCarton = new javax.swing.JTextField();
+        btnBuscarCedulaCarton = new javax.swing.JButton();
+        lblResultadoCedulaCarton = new javax.swing.JLabel();
+        cmbSenadorCarton = new javax.swing.JComboBox();
+        btnVotarSenador = new javax.swing.JButton();
+        btnAtrasCarton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnOpcionMunicipio = new javax.swing.JButton();
         btnOpcionPartido = new javax.swing.JButton();
@@ -88,8 +147,15 @@ public class Formulario extends javax.swing.JFrame {
         lblVotosTotales.setText("Votos totales:");
 
         btnRegistrarMunicipio.setText("Registrar Municipio");
+        btnRegistrarMunicipio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarMunicipioActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Id:");
+
+        btnAtrasMunicipio.setText("Atras");
 
         javax.swing.GroupLayout JDMunicipioLayout = new javax.swing.GroupLayout(JDMunicipio.getContentPane());
         JDMunicipio.getContentPane().setLayout(JDMunicipioLayout);
@@ -109,20 +175,27 @@ public class Formulario extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtPTotalMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(JDMunicipioLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtIdMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(JDMunicipioLayout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtNombreMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDMunicipioLayout.createSequentialGroup()
+                                            .addComponent(jLabel3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                        .addGroup(JDMunicipioLayout.createSequentialGroup()
+                                            .addComponent(jLabel8)
+                                            .addGap(31, 31, 31)))
+                                    .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtIdMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNombreMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(JDMunicipioLayout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(lblVotosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDMunicipioLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAtrasMunicipio)
+                .addGap(29, 29, 29))
         );
         JDMunicipioLayout.setVerticalGroup(
             JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +210,7 @@ public class Formulario extends javax.swing.JFrame {
                 .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNombreMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtPTotalMunicipio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,12 +222,12 @@ public class Formulario extends javax.swing.JFrame {
                 .addComponent(btnRegistrarMunicipio)
                 .addGap(31, 31, 31)
                 .addComponent(lblVotosTotales)
-                .addGap(104, 104, 104))
+                .addGap(61, 61, 61)
+                .addComponent(btnAtrasMunicipio)
+                .addGap(20, 20, 20))
         );
 
         jLabel6.setText("VOTANTES");
-
-        jLabel7.setText("Id:");
 
         jLabel9.setText("Nombre:");
 
@@ -167,20 +240,63 @@ public class Formulario extends javax.swing.JFrame {
         jLabel13.setText("Direccion: ");
 
         btnCosultarMesaVotante.setText("Consultar mesa de votacion");
+        btnCosultarMesaVotante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCosultarMesaVotanteActionPerformed(evt);
+            }
+        });
 
         btnRegistrarVotante.setText("Registrar");
+        btnRegistrarVotante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarVotanteActionPerformed(evt);
+            }
+        });
 
         btnActualizarVotante.setText("Actualizar");
+        btnActualizarVotante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarVotanteActionPerformed(evt);
+            }
+        });
 
-        btnBuscarVotante.setText("Buscar por ID");
+        btnBuscarVotante.setText("Buscar por Cedula");
+        btnBuscarVotante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarVotanteActionPerformed(evt);
+            }
+        });
 
         btnEliminarVotante.setText("Eliminar");
+        btnEliminarVotante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarVotanteActionPerformed(evt);
+            }
+        });
 
-        lblResultadoMesaVotante.setText("Le corresponde votar en la mesa: ");
+        cbmMunicipioVotante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbmMunicipioVotanteActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("Municipio:");
 
         jLabel16.setText("Mesa:");
+
+        btnVotar.setText("VOTAR");
+        btnVotar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVotarActionPerformed(evt);
+            }
+        });
+
+        btnAtrasVotante.setText("Atras");
+        btnAtrasVotante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasVotanteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JDVotanteLayout = new javax.swing.GroupLayout(JDVotante.getContentPane());
         JDVotante.getContentPane().setLayout(JDVotanteLayout);
@@ -191,39 +307,19 @@ public class Formulario extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(205, 205, 205))
             .addGroup(JDVotanteLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(39, 39, 39)
                 .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JDVotanteLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(33, 33, 33)
-                        .addComponent(txtIdVotante, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnBuscarVotante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRegistrarVotante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnActualizarVotante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminarVotante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(JDVotanteLayout.createSequentialGroup()
-                        .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12))
                         .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(JDVotanteLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12))
+                                .addGap(27, 27, 27)
+                                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtSexoVotante)
-                                    .addComponent(txtCedulaVotante)))
-                            .addGroup(JDVotanteLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtEdadVotante)))
-                        .addGap(255, 255, 255))
-                    .addGroup(JDVotanteLayout.createSequentialGroup()
-                        .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JDVotanteLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNombreVotante, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtEdadVotante))
+                                .addGap(255, 255, 255))
                             .addGroup(JDVotanteLayout.createSequentialGroup()
                                 .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel13)
@@ -238,49 +334,65 @@ public class Formulario extends javax.swing.JFrame {
                                         .addGap(30, 30, 30)
                                         .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(cbmMunicipioVotante, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cmbMesaVotante, 0, 141, Short.MAX_VALUE)))))
+                                            .addComponent(cmbMesaVotante, 0, 141, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(JDVotanteLayout.createSequentialGroup()
-                                .addComponent(btnCosultarMesaVotante)
-                                .addGap(48, 48, 48)
-                                .addComponent(lblResultadoMesaVotante, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 3, Short.MAX_VALUE)))
-                .addGap(48, 48, 48))
+                                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel9))
+                                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(JDVotanteLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtNombreVotante, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDVotanteLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtCedulaVotante, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnBuscarVotante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnRegistrarVotante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnActualizarVotante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminarVotante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(48, 48, 48))
+                    .addGroup(JDVotanteLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(btnCosultarMesaVotante)
+                        .addGap(61, 61, 61)
+                        .addComponent(btnVotar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addComponent(btnAtrasVotante)
+                        .addGap(20, 20, 20))))
         );
         JDVotanteLayout.setVerticalGroup(
             JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JDVotanteLayout.createSequentialGroup()
-                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(JDVotanteLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtIdVotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCedulaVotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDVotanteLayout.createSequentialGroup()
                         .addGap(99, 99, 99)
-                        .addComponent(btnRegistrarVotante)
-                        .addGap(10, 10, 10)))
+                        .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRegistrarVotante)
+                            .addComponent(jLabel10))
+                        .addGap(4, 4, 4)))
+                .addGap(32, 32, 32)
                 .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuscarVotante)
                     .addComponent(jLabel9)
                     .addComponent(txtNombreVotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(btnBuscarVotante)
-                .addGap(2, 2, 2)
-                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JDVotanteLayout.createSequentialGroup()
-                        .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(txtCedulaVotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(JDVotanteLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel11)
-                                    .addComponent(txtSexoVotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(51, 51, 51)
+                                .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSexoVotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11)))
                             .addGroup(JDVotanteLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
+                                .addGap(32, 32, 32)
                                 .addComponent(btnActualizarVotante)))
                         .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(JDVotanteLayout.createSequentialGroup()
@@ -297,27 +409,131 @@ public class Formulario extends javax.swing.JFrame {
                             .addComponent(txtDireccionVotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42)
                         .addComponent(jLabel15))
-                    .addComponent(cbmMunicipioVotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDVotanteLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(cbmMunicipioVotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(43, 43, 43)
                 .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(cmbMesaVotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblResultadoMesaVotante)
-                    .addComponent(btnCosultarMesaVotante))
+                    .addComponent(btnCosultarMesaVotante)
+                    .addComponent(btnVotar)
+                    .addComponent(btnAtrasVotante))
                 .addGap(24, 24, 24))
         );
+
+        jLabel23.setText("PARTIDO");
+
+        jLabel24.setText("Id:");
+
+        jLabel25.setText("Nombre:");
+
+        jLabel26.setText("Siglas:");
+
+        jLabel27.setText("Direccion:");
+
+        jLabel28.setText("Municipio:");
+
+        btnRegistrarPartido.setText("Registrar");
+
+        btnBuscarPartido.setText("Buscar por ID");
+
+        btnActualizarPartido.setText("Actualizar");
+
+        btnEliminarPartido.setText("Eliminar");
+
+        btnAtrasPartido.setText("Atras");
 
         javax.swing.GroupLayout JDPartidoLayout = new javax.swing.GroupLayout(JDPartido.getContentPane());
         JDPartido.getContentPane().setLayout(JDPartidoLayout);
         JDPartidoLayout.setHorizontalGroup(
             JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDPartidoLayout.createSequentialGroup()
+                .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDPartidoLayout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDPartidoLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26)
+                            .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(JDPartidoLayout.createSequentialGroup()
+                                    .addComponent(jLabel27)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtDireccionPartido)
+                                    .addGap(13, 13, 13))
+                                .addGroup(JDPartidoLayout.createSequentialGroup()
+                                    .addComponent(jLabel28)
+                                    .addGap(41, 41, 41)
+                                    .addComponent(cmbMunicipioPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(JDPartidoLayout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(txtSiglasPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JDPartidoLayout.createSequentialGroup()
+                                .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel25)
+                                    .addComponent(jLabel24))
+                                .addGap(18, 18, 18)
+                                .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtIdPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombrePartido, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                        .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRegistrarPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBuscarPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnActualizarPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminarPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDPartidoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAtrasPartido)
+                .addContainerGap())
         );
         JDPartidoLayout.setVerticalGroup(
             JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(JDPartidoLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel23)
+                .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JDPartidoLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel24)
+                            .addComponent(btnRegistrarPartido)
+                            .addComponent(txtIdPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25)
+                            .addComponent(txtNombrePartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(JDPartidoLayout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(btnBuscarPartido)))
+                .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JDPartidoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(txtSiglasPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(JDPartidoLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(btnActualizarPartido)))
+                .addGap(15, 15, 15)
+                .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel27)
+                    .addComponent(txtDireccionPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEliminarPartido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(cmbMunicipioPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(btnAtrasPartido)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout JDColegioLayout = new javax.swing.GroupLayout(JDColegio.getContentPane());
@@ -364,17 +580,235 @@ public class Formulario extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        jLabel14.setText("CONSULTA DE MESA DE VOTACION");
+
+        jLabel17.setText("Digite su cedula:");
+
+        lblNombreConsultaMesa.setText("Nombre:");
+
+        lblMunicipioConsultaMesa.setText("Municipio:");
+
+        jLabel20.setText("Resultados");
+
+        lblMesaConsultaMesa.setText("Mesa:");
+
+        lblDireccionConsultaMesa.setText("Direccion:");
+
+        btnConsultarMesaDeVotacion.setText("Consultar");
+        btnConsultarMesaDeVotacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarMesaDeVotacionActionPerformed(evt);
+            }
+        });
+
+        AtrasConsultarMesaDeVotacion.setText("Atras");
+        AtrasConsultarMesaDeVotacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtrasConsultarMesaDeVotacionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JDMesaDeVotacionVotanteLayout = new javax.swing.GroupLayout(JDMesaDeVotacionVotante.getContentPane());
+        JDMesaDeVotacionVotante.getContentPane().setLayout(JDMesaDeVotacionVotanteLayout);
+        JDMesaDeVotacionVotanteLayout.setHorizontalGroup(
+            JDMesaDeVotacionVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDMesaDeVotacionVotanteLayout.createSequentialGroup()
+                .addGroup(JDMesaDeVotacionVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JDMesaDeVotacionVotanteLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jLabel14))
+                    .addGroup(JDMesaDeVotacionVotanteLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(JDMesaDeVotacionVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNombreConsultaMesa)
+                            .addComponent(lblMunicipioConsultaMesa)
+                            .addComponent(lblMesaConsultaMesa)
+                            .addComponent(lblDireccionConsultaMesa)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDMesaDeVotacionVotanteLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCedulaConsultarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                .addGroup(JDMesaDeVotacionVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnConsultarMesaDeVotacion)
+                                    .addComponent(AtrasConsultarMesaDeVotacion, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(JDMesaDeVotacionVotanteLayout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41))
+        );
+        JDMesaDeVotacionVotanteLayout.setVerticalGroup(
+            JDMesaDeVotacionVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDMesaDeVotacionVotanteLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel14)
+                .addGap(44, 44, 44)
+                .addGroup(JDMesaDeVotacionVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(txtCedulaConsultarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConsultarMesaDeVotacion))
+                .addGap(25, 25, 25)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(lblNombreConsultaMesa)
+                .addGap(27, 27, 27)
+                .addComponent(lblMunicipioConsultaMesa)
+                .addGap(26, 26, 26)
+                .addComponent(lblMesaConsultaMesa)
+                .addGap(18, 18, 18)
+                .addComponent(lblDireccionConsultaMesa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AtrasConsultarMesaDeVotacion)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        jLabel29.setText("CARTON DE VOTACION ");
+
+        jLabel30.setText("ELECCION DE ALCALDE");
+
+        jLabel31.setText("ELECCION DE SENADOR");
+
+        jLabel32.setText("Seleccione por quien desea votar:");
+
+        btbVotarAlcaldeCarton.setText("VOTAR");
+        btbVotarAlcaldeCarton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btbVotarAlcaldeCartonActionPerformed(evt);
+            }
+        });
+
+        jLabel33.setText("Seleccione por quien desea votar:");
+
+        jLabel34.setText("Digite su cedula:");
+
+        btnBuscarCedulaCarton.setText("BUSCAR");
+        btnBuscarCedulaCarton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarCedulaCartonActionPerformed(evt);
+            }
+        });
+
+        lblResultadoCedulaCarton.setText("Nombre:");
+
+        btnVotarSenador.setText("VOTAR");
+        btnVotarSenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVotarSenadorActionPerformed(evt);
+            }
+        });
+
+        btnAtrasCarton.setText("Finalizar");
+        btnAtrasCarton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasCartonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JDCartonDeVotacionesLayout = new javax.swing.GroupLayout(JDCartonDeVotaciones.getContentPane());
+        JDCartonDeVotaciones.getContentPane().setLayout(JDCartonDeVotacionesLayout);
+        JDCartonDeVotacionesLayout.setHorizontalGroup(
+            JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDCartonDeVotacionesLayout.createSequentialGroup()
+                .addGroup(JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JDCartonDeVotacionesLayout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel34)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCedulaCarton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnBuscarCedulaCarton))
+                    .addGroup(JDCartonDeVotacionesLayout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(lblResultadoCedulaCarton)))
+                .addContainerGap(165, Short.MAX_VALUE))
+            .addGroup(JDCartonDeVotacionesLayout.createSequentialGroup()
+                .addGroup(JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel33)
+                    .addGroup(JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JDCartonDeVotacionesLayout.createSequentialGroup()
+                            .addGap(56, 56, 56)
+                            .addComponent(jLabel32))
+                        .addGroup(JDCartonDeVotacionesLayout.createSequentialGroup()
+                            .addGap(38, 38, 38)
+                            .addGroup(JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel31)
+                                .addComponent(jLabel30)))))
+                .addGap(79, 79, 79)
+                .addGroup(JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cmbAlcaldesCarton, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbSenadorCarton, 0, 135, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btbVotarAlcaldeCarton)
+                    .addComponent(btnVotarSenador))
+                .addGap(52, 52, 52))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDCartonDeVotacionesLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDCartonDeVotacionesLayout.createSequentialGroup()
+                        .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(233, 233, 233))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDCartonDeVotacionesLayout.createSequentialGroup()
+                        .addComponent(btnAtrasCarton)
+                        .addGap(269, 269, 269))))
+        );
+        JDCartonDeVotacionesLayout.setVerticalGroup(
+            JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDCartonDeVotacionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(txtCedulaCarton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarCedulaCarton))
+                .addGap(30, 30, 30)
+                .addComponent(lblResultadoCedulaCarton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jLabel30)
+                .addGap(28, 28, 28)
+                .addGroup(JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbAlcaldesCarton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32)
+                    .addComponent(btbVotarAlcaldeCarton))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel31)
+                .addGap(15, 15, 15)
+                .addGroup(JDCartonDeVotacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(cmbSenadorCarton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVotarSenador))
+                .addGap(36, 36, 36)
+                .addComponent(btnAtrasCarton)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("SISTEMA DE VOTACION ELECTRONICA");
 
         btnOpcionMunicipio.setText("Opciones de Municipio");
+        btnOpcionMunicipio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionMunicipioActionPerformed(evt);
+            }
+        });
 
         btnOpcionPartido.setText("Opciones de Partido Politico");
+        btnOpcionPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionPartidoActionPerformed(evt);
+            }
+        });
 
         btnOpcionCandidato.setText("Opciones de Candidato");
 
         btnOpcionVotante.setText("Opciones de votantes");
+        btnOpcionVotante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionVotanteActionPerformed(evt);
+            }
+        });
 
         btnOpcionColegio.setText("Opciones de Colegio");
 
@@ -437,6 +871,492 @@ public class Formulario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegistrarMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMunicipioActionPerformed
+        // TODO add your handling code here:
+       
+    
+              objMun.guardarMun(this.txtIdMunicipio.getText(), this.txtNombreMunicipio.getText(), this.txtPTotalMunicipio.getText(),this.txtPAVotarMunicipio.getText());
+       
+
+                
+    }//GEN-LAST:event_btnRegistrarMunicipioActionPerformed
+
+    private void btnOpcionMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionMunicipioActionPerformed
+        // TODO add your handling code here:
+        
+        this.JDMunicipio.show();
+    }//GEN-LAST:event_btnOpcionMunicipioActionPerformed
+
+    private void btnOpcionVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionVotanteActionPerformed
+        // TODO add your handling code here:
+        this.JDVotante.show();
+        
+        try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                
+            sentencia=conexion.getConexion().createStatement(); 
+            ResultSet resultado=sentencia.executeQuery("select NOMBRE from MUNICIPIO"); 
+            
+           while (resultado.next())
+            {
+                
+
+               String tmpStrObtenido = resultado.getString("NOMBRE");
+               this. cbmMunicipioVotante.addItem(tmpStrObtenido);
+        
+            }
+           
+           ResultSet resultado2=sentencia.executeQuery("select NUMERO from MESA"); 
+            
+           while (resultado2.next())
+            {
+                
+
+               String tmpStrObtenido2 = resultado2.getString("numero");
+               this. cbmMunicipioVotante.addItem(tmpStrObtenido2);
+        
+            }
+           
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+                                        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnOpcionVotanteActionPerformed
+
+    private void btnOpcionPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionPartidoActionPerformed
+        // TODO add your handling code here:
+        
+        this.JDPartido.show();
+    }//GEN-LAST:event_btnOpcionPartidoActionPerformed
+
+    private void btnBuscarVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVotanteActionPerformed
+        // TODO add your handling code here:
+        
+        
+     
+        
+
+        try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                
+            sentencia=conexion.getConexion().createStatement(); 
+            ResultSet resultado=sentencia.executeQuery("select * from VOTANTE where CEDULA = '"
+                    +this.txtCedulaVotante+"'"); 
+            
+           while (resultado.next())
+            {
+                this.txtNombreVotante.setText(""+resultado.getString("NOMBRE"));
+                this.txtSexoVotante.setText(""+resultado.getString("SEXO"));
+                this.txtEdadVotante.setText(""+resultado.getString("EDAD"));
+                this.txtDireccionVotante.setText(""+resultado.getString("DIRECCION"));
+
+            }
+           
+            ResultSet resultado2=sentencia.executeQuery("select m.NOMBRE AS NOMBRE_MUNICIPIO from  MUNICIPIO m, VOTANTE v "
+                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+                     
+             String tmpStrObtenido2 = resultado2.getString("nombre");
+               this. cbmMunicipioVotante.addItem(tmpStrObtenido2);
+                
+            
+            
+            
+            
+            ResultSet resultado3=sentencia.executeQuery("select m.NUMERO AS NUMERO_MESA from  MESA m, VOTANTE v "
+                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+           
+            String tmpStrObtenido3 = resultado3.getString("numero");
+               this.cmbMesaVotante.addItem(tmpStrObtenido3);
+            
+            
+            
+              
+           
+        resultado.close();
+        resultado2.close();
+        resultado3.close();
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+    }//GEN-LAST:event_btnBuscarVotanteActionPerformed
+
+    private void cbmMunicipioVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmMunicipioVotanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbmMunicipioVotanteActionPerformed
+
+    private void btnRegistrarVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarVotanteActionPerformed
+        // TODO add your handling code here:
+        
+        String municipio=null;
+        String mesa=null;
+        
+        
+        try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                sentencia=conexion.getConexion().createStatement(); 
+                
+            
+          
+            ResultSet resultado =sentencia.executeQuery("select m.MUNICIPIO_ID AS ID from  MUNICIPIO m, VOTANTE v "
+                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+                     
+                 municipio = resultado.getString("municipio_id");
+             
+            
+
+          ResultSet resultado2=sentencia.executeQuery("select m.MESA_ID AS ID from  MESA m, VOTANTE v "
+                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+           
+                     mesa = resultado.getString("mesa_id");
+            
+            
+            
+              
+           
+        resultado.close();
+        resultado2.close();
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+        
+        
+        objVot.guardarVot(this.txtCedulaVotante.getText(), this.txtNombreVotante.getText(), this.txtSexoVotante.getText(),
+                this.txtEdadVotante.getText(),this.txtDireccionVotante.getText(),municipio,mesa);
+    }//GEN-LAST:event_btnRegistrarVotanteActionPerformed
+
+    private void btnActualizarVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarVotanteActionPerformed
+        // TODO add your handling code here:
+        
+        
+          String municipio=null;
+        String mesa=null;
+        
+        
+        try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                sentencia=conexion.getConexion().createStatement(); 
+                
+            
+          
+            ResultSet resultado =sentencia.executeQuery("select m.MUNICIPIO_ID AS ID from  MUNICIPIO m, VOTANTE v "
+                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+                     
+                 municipio = resultado.getString("municipio_id");
+             
+            
+
+          ResultSet resultado2=sentencia.executeQuery("select m.MESA_ID AS ID from  MESA m, VOTANTE v "
+                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+           
+                     mesa = resultado.getString("mesa_id");
+            
+            
+            
+              
+           
+        resultado.close();
+        resultado2.close();
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+        
+        
+        objVot.actualizarVot(this.txtCedulaVotante.getText(), this.txtNombreVotante.getText(), this.txtSexoVotante.getText(),
+                this.txtEdadVotante.getText(),this.txtDireccionVotante.getText(),municipio,mesa);
+    }//GEN-LAST:event_btnActualizarVotanteActionPerformed
+
+    private void btnEliminarVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVotanteActionPerformed
+        // TODO add your handling code here:
+        
+          objVot.eliminarVot(this.txtCedulaVotante.getText());
+    }//GEN-LAST:event_btnEliminarVotanteActionPerformed
+
+    private void btnCosultarMesaVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCosultarMesaVotanteActionPerformed
+        // TODO add your handling code here:
+        this.JDMesaDeVotacionVotante.show();
+    }//GEN-LAST:event_btnCosultarMesaVotanteActionPerformed
+
+    private void btnVotarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVotarActionPerformed
+        // TODO add your handling code here:
+        this.JDCartonDeVotaciones.show();
+    }//GEN-LAST:event_btnVotarActionPerformed
+
+    private void btnAtrasVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasVotanteActionPerformed
+        // TODO add your handling code here:
+        
+        this.JDVotante.hide();
+    }//GEN-LAST:event_btnAtrasVotanteActionPerformed
+
+    private void btnConsultarMesaDeVotacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarMesaDeVotacionActionPerformed
+        // TODO add your handling code here:
+        
+         try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                
+            sentencia=conexion.getConexion().createStatement(); 
+            ResultSet resultado=sentencia.executeQuery("select * from VOTANTE where CEDULA = '"
+                    +this.txtCedulaVotante+"'"); 
+            
+           while (resultado.next())
+            {
+                this.lblNombreConsultaMesa.setText("Nombre: "+resultado.getString("NOMBRE"));
+                
+
+            }
+           
+            ResultSet resultado2=sentencia.executeQuery("select m.NOMBRE AS NOMBRE_MUNICIPIO from  MUNICIPIO m, VOTANTE v "
+                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+                     
+             String tmpStrObtenido2 = resultado2.getString("nombre");
+               this.lblMunicipioConsultaMesa.setText("Municipio: "+tmpStrObtenido2);
+                
+            
+            
+            ResultSet resultado3=sentencia.executeQuery("select m.NUMERO AS NUMERO_MESA from  MESA m, VOTANTE v "
+                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+           
+            String tmpStrObtenido3 = resultado3.getString("numero");
+               this.lblMesaConsultaMesa.setText("Mesa: "+tmpStrObtenido3);
+               
+               
+               
+             ResultSet resultado4=sentencia.executeQuery("select m.DIRECCION AS NOMBRE_MUNICIPIO from  MUNICIPIO m, VOTANTE v "
+                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+                     
+             String tmpStrObtenido4 = resultado4.getString("direccion");
+               this.lblMunicipioConsultaMesa.setText("Direccion: "+tmpStrObtenido4);
+            
+            
+              
+           
+        resultado.close();
+        resultado2.close();
+        resultado3.close();
+        resultado4.close();
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+    }//GEN-LAST:event_btnConsultarMesaDeVotacionActionPerformed
+
+    private void AtrasConsultarMesaDeVotacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasConsultarMesaDeVotacionActionPerformed
+        // TODO add your handling code here:
+        
+        this.JDMesaDeVotacionVotante.hide();
+    }//GEN-LAST:event_AtrasConsultarMesaDeVotacionActionPerformed
+
+    private void btnBuscarCedulaCartonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCedulaCartonActionPerformed
+        // TODO add your handling code here:
+          try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                
+            sentencia=conexion.getConexion().createStatement(); 
+            ResultSet resultado=sentencia.executeQuery("select * from VOTANTE where CEDULA = '"
+                    +this.txtCedulaVotante+"'"); 
+            
+           while (resultado.next())
+            {
+                this.lblResultadoCedulaCarton.setText("Nombre: "+resultado.getString("NOMBRE"));
+                
+
+            }
+           
+            ResultSet resultado2=sentencia.executeQuery("select c.NOMBRE AS NOMBRE_CANDIDATO from  CANDIDATO c, VOTANTE v "
+                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+                     
+             while (resultado2.next())
+            {
+                
+
+               String tmpStrObtenido2 = resultado2.getString("nombre");
+               this.cmbAlcaldesCarton.addItem(tmpStrObtenido2);
+        
+            }
+            
+            
+            ResultSet resultado3=sentencia.executeQuery("select m.NUMERO AS NUMERO_MESA from  MESA m, VOTANTE v "
+                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+           
+             while (resultado2.next())
+            {
+                
+
+               String tmpStrObtenido2 = resultado2.getString("nombre");
+               this.cmbSenadorCarton.addItem(tmpStrObtenido2);
+        
+            }
+            
+              
+           
+        resultado.close();
+        resultado2.close();
+        resultado3.close();
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+        
+    }//GEN-LAST:event_btnBuscarCedulaCartonActionPerformed
+
+    private void btbVotarAlcaldeCartonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbVotarAlcaldeCartonActionPerformed
+        // TODO add your handling code here:
+        
+         try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                int cantidad=0;
+                
+            sentencia=conexion.getConexion().createStatement(); 
+            ResultSet resultado=sentencia.executeQuery("select CANTIDAD_VOTOS from CANDIDATO where NOMBRE = '"
+                    +this.cmbAlcaldesCarton.getSelectedItem()+"'");
+            
+             cantidad=Integer.parseInt(resultado.getString("totalVotos"));
+             
+             cantidad=cantidad+1;
+            
+             
+            String instruccion=("update CANDIDATO set CANTIDAD_VOTOS=? where NOMBRE='"
+                    +this.cmbSenadorCarton.getSelectedItem()+"'");
+             conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
+            
+            conexion.sentencia.setInt(1, cantidad);
+            
+            
+                
+        resultado.close();  
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+        
+    }//GEN-LAST:event_btbVotarAlcaldeCartonActionPerformed
+
+    private void btnVotarSenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVotarSenadorActionPerformed
+        // TODO add your handling code here:
+        
+         try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                int cantidad=0;
+                
+            sentencia=conexion.getConexion().createStatement(); 
+            ResultSet resultado=sentencia.executeQuery("select CANTIDAD_VOTOS from CANDIDATO where NOMBRE = '"
+                    +this.cmbSenadorCarton.getSelectedItem()+"'");
+            
+             cantidad=Integer.parseInt(resultado.getString("totalVotos"));
+             
+             cantidad=cantidad+1;
+            
+             
+            String instruccion=("update CANDIDATO set CANTIDAD_VOTOS=? where NOMBRE='"
+                    +this.cmbSenadorCarton.getSelectedItem()+"'"); 
+            
+            
+            
+             conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
+            
+            conexion.sentencia.setInt(1, cantidad);
+            
+            
+                
+        resultado.close();  
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+    }//GEN-LAST:event_btnVotarSenadorActionPerformed
+
+    private void btnAtrasCartonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasCartonActionPerformed
+        // TODO add your handling code here:
+        
+        this.JDCartonDeVotaciones.hide();
+    }//GEN-LAST:event_btnAtrasCartonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -473,16 +1393,29 @@ public class Formulario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AtrasConsultarMesaDeVotacion;
     private javax.swing.JDialog JDCandidato;
+    private javax.swing.JDialog JDCartonDeVotaciones;
     private javax.swing.JDialog JDColegio;
     private javax.swing.JDialog JDJurado;
     private javax.swing.JDialog JDMesa;
+    private javax.swing.JDialog JDMesaDeVotacionVotante;
     private javax.swing.JDialog JDMunicipio;
     private javax.swing.JDialog JDPartido;
     private javax.swing.JDialog JDVotante;
+    private javax.swing.JButton btbVotarAlcaldeCarton;
+    private javax.swing.JButton btnActualizarPartido;
     private javax.swing.JButton btnActualizarVotante;
+    private javax.swing.JButton btnAtrasCarton;
+    private javax.swing.JButton btnAtrasMunicipio;
+    private javax.swing.JButton btnAtrasPartido;
+    private javax.swing.JButton btnAtrasVotante;
+    private javax.swing.JButton btnBuscarCedulaCarton;
+    private javax.swing.JButton btnBuscarPartido;
     private javax.swing.JButton btnBuscarVotante;
+    private javax.swing.JButton btnConsultarMesaDeVotacion;
     private javax.swing.JButton btnCosultarMesaVotante;
+    private javax.swing.JButton btnEliminarPartido;
     private javax.swing.JButton btnEliminarVotante;
     private javax.swing.JButton btnOpcionCandidato;
     private javax.swing.JButton btnOpcionColegio;
@@ -492,35 +1425,64 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JButton btnOpcionPartido;
     private javax.swing.JButton btnOpcionVotante;
     private javax.swing.JButton btnRegistrarMunicipio;
+    private javax.swing.JButton btnRegistrarPartido;
     private javax.swing.JButton btnRegistrarVotante;
+    private javax.swing.JButton btnVotar;
+    private javax.swing.JButton btnVotarSenador;
     private javax.swing.JComboBox cbmMunicipioVotante;
+    private javax.swing.JComboBox cmbAlcaldesCarton;
     private javax.swing.JComboBox cmbMesaVotante;
+    private javax.swing.JComboBox cmbMunicipioPartido;
+    private javax.swing.JComboBox cmbSenadorCarton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel lblResultadoMesaVotante;
+    private javax.swing.JLabel lblDireccionConsultaMesa;
+    private javax.swing.JLabel lblMesaConsultaMesa;
+    private javax.swing.JLabel lblMunicipioConsultaMesa;
+    private javax.swing.JLabel lblNombreConsultaMesa;
+    private javax.swing.JLabel lblResultadoCedulaCarton;
     private javax.swing.JLabel lblVotosTotales;
+    private javax.swing.JTextField txtCedulaCarton;
+    private javax.swing.JTextField txtCedulaConsultarMesa;
     private javax.swing.JTextField txtCedulaVotante;
+    private javax.swing.JTextField txtDireccionPartido;
     private javax.swing.JTextField txtDireccionVotante;
     private javax.swing.JTextField txtEdadVotante;
     private javax.swing.JTextField txtIdMunicipio;
-    private javax.swing.JTextField txtIdVotante;
+    private javax.swing.JTextField txtIdPartido;
     private javax.swing.JTextField txtNombreMunicipio;
+    private javax.swing.JTextField txtNombrePartido;
     private javax.swing.JTextField txtNombreVotante;
     private javax.swing.JTextField txtPAVotarMunicipio;
     private javax.swing.JTextField txtPTotalMunicipio;
     private javax.swing.JTextField txtSexoVotante;
+    private javax.swing.JTextField txtSiglasPartido;
     // End of variables declaration//GEN-END:variables
 }
