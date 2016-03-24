@@ -19,11 +19,12 @@ public class Votante {
 try{
             ConectarBD conexion= new ConectarBD();
             
+            
+            String nombre =b;
             int cedula = Integer.parseInt(a);
-            String nombre =  b;
-            String sexo = c;
+            String sexo =c;
             int edad = Integer.parseInt(d);
-            String direccion= ee;
+            String direccion=ee;
             int municipio= Integer.parseInt(f);
             int mesa = Integer.parseInt(g);       
             
@@ -31,9 +32,9 @@ try{
 
             String instruccion="insert into VOTANTE values (?,?,?,?,?,?,?)";
             conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
-            conexion.sentencia.setInt(1, cedula);
-            conexion.sentencia.setString(2, nombre);
-            conexion.sentencia.setString(3, sexo);
+            conexion.sentencia.setString(1,nombre);
+            conexion.sentencia.setInt(2,cedula);
+            conexion.sentencia.setString(3,sexo);
             conexion.sentencia.setInt(4, edad);
             conexion.sentencia.setString(5, direccion);
             conexion.sentencia.setInt(6, municipio);
@@ -66,16 +67,16 @@ return men;
             
            
 
-             String instruccion= "Update VOTANTE set NOMBRE=?,SEXO=?,,EDAD=?,DIRECCION=?,MUNICIPIO_ID=?,MESA_ID=? "
-                     + "where CEDULA='" +cedula+"'";
+             String instruccion= "Update VOTANTE set NOMBRE=?,SEXO=?,EDAD=?,DIRECCION=?,MUNICIPIO_ID=?,MESA_ID=? "
+                     + "where CEDULA=" +cedula;
             conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
             
-            conexion.sentencia.setString(1, nombre);
-            conexion.sentencia.setString(2, sexo);
-            conexion.sentencia.setInt(3, edad);
-            conexion.sentencia.setString(4, direccion);
-            conexion.sentencia.setInt(5, municipio);
-            conexion.sentencia.setInt(6, mesa);
+            conexion.sentencia.setString(1,nombre);
+            conexion.sentencia.setString(2,sexo);
+            conexion.sentencia.setInt(3,edad);
+            conexion.sentencia.setString(4,direccion);
+            conexion.sentencia.setInt(5,municipio);
+            conexion.sentencia.setInt(6,mesa);
             conexion.sentencia.execute();
             men="reguistro modificado";
 
@@ -85,8 +86,10 @@ return men;
             catch(SQLException e)
             {
                 men ="Erros://"+e;
+                System.out.println(men);
             }
             return men;
+           
   }
     
   
@@ -99,14 +102,16 @@ return men;
             int cedula = Integer.parseInt(a);
             
             String instruccion= "Delete from VOTANTE "
-                     + "where CEDULA='" +cedula+"'";
+                     + "where CEDULA=" +cedula;
             conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
+            conexion.sentencia.execute();
             
             conexion.getConexion().close();
             }
             catch(SQLException e)
             {
-                men ="Erros://"+e;
+                men ="Error://"+e;
+                System.out.println(men);
             }
             return men;
        

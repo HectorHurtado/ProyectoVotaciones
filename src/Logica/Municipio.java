@@ -45,6 +45,32 @@ try{
 return men;
 
 }  
+     
+     
+      public String eliminarMun(String a)
+   {
+       
+       String men="";    
+         try{
+             ConectarBD conexion= new ConectarBD();
+            int id = Integer.parseInt(a);
+            
+            String instruccion= "Delete from MUNICIPIO "
+                     + "where MUNICIPIO_ID=" +id;
+            conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
+            conexion.sentencia.execute();
+            
+            conexion.getConexion().close();
+            }
+            catch(SQLException e)
+            {
+                men ="Error://"+e;
+                System.out.println(men);
+            }
+            return men;
+       
+       
+   }
   
   
     
