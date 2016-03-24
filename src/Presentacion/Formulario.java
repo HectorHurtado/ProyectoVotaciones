@@ -13,6 +13,7 @@ import Logica.ConectarBD;
 import Logica.Jurado;
 import Logica.Mesa;
 import Logica.Municipio;
+import Logica.Partido;
 import Logica.Votante;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -34,6 +35,7 @@ public class Formulario extends javax.swing.JFrame {
     
     Municipio  objMun=new Municipio();
     Votante objVot= new Votante();
+    Partido objPar = new Partido();
     Colegio objCol=new Colegio();
     Candito objCan=new Candito();
     Jurado objJur=new Jurado();
@@ -505,14 +507,39 @@ public class Formulario extends javax.swing.JFrame {
         jLabel28.setText("Municipio:");
 
         btnRegistrarPartido.setText("Registrar");
+        btnRegistrarPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarPartidoActionPerformed(evt);
+            }
+        });
 
         btnBuscarPartido.setText("Buscar por ID");
+        btnBuscarPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPartidoActionPerformed(evt);
+            }
+        });
 
         btnActualizarPartido.setText("Actualizar");
+        btnActualizarPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarPartidoActionPerformed(evt);
+            }
+        });
 
         btnEliminarPartido.setText("Eliminar");
+        btnEliminarPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarPartidoActionPerformed(evt);
+            }
+        });
 
         btnAtrasPartido.setText("Atras");
+        btnAtrasPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasPartidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JDPartidoLayout = new javax.swing.GroupLayout(JDPartido.getContentPane());
         JDPartido.getContentPane().setLayout(JDPartidoLayout);
@@ -1819,6 +1846,157 @@ public class Formulario extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         objJur.actualizarJur(aJur.getText(),bJur.getText(),cJur.getText(),dJur.getText(),eeJur.getText());       // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnRegistrarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPartidoActionPerformed
+        // TODO add your handling code here:
+        
+      String municipio=null;
+        
+        
+        try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                sentencia=conexion.getConexion().createStatement(); 
+                
+            
+          
+            ResultSet resultado =sentencia.executeQuery("select MUNICIPIO_ID from  MUNICIPIO "
+                    + "WHERE NOMBRE = '"+this.cmbMunicipioPartido.getSelectedItem()+"'"); 
+                     
+                 municipio = resultado.getString("municipio_id");
+             
+           
+            
+            
+            
+              
+           
+        resultado.close();
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+    
+        
+        
+        objPar.guardarPar(this.txtIdPartido.getText(), this.txtNombrePartido.getText(),this.txtSiglasPartido.getText(),this.txtDireccionPartido.getText(), municipio);
+    
+    }//GEN-LAST:event_btnRegistrarPartidoActionPerformed
+
+    private void btnBuscarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPartidoActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+
+        try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                
+            sentencia=conexion.getConexion().createStatement(); 
+            ResultSet resultado=sentencia.executeQuery("select * from PARTIDO where PARTIDO_ID = '"
+                    +this.txtIdPartido+"'"); 
+            
+           while (resultado.next())
+            {
+                this.txtNombrePartido.setText(""+resultado.getString("NOMBRE"));
+                this.txtSiglasPartido.setText(""+resultado.getString("SIGLAS"));
+                this.txtDireccionPartido.setText(""+resultado.getString("DIRECCION"));
+                
+
+            }
+           
+            ResultSet resultado2=sentencia.executeQuery("select m.NOMBRE AS NOMBRE_MUNICIPIO from  MUNICIPIO m, PARTIDO p "
+                    + "WHERE p.PARTIDO_ID = '"+this.txtIdPartido+"'"); 
+                     
+             String tmpStrObtenido2 = resultado2.getString("municipio");
+               this. cbmMunicipioVotante.addItem(tmpStrObtenido2);
+                
+                    
+           
+        resultado.close();
+        resultado2.close();
+        
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+    }//GEN-LAST:event_btnBuscarPartidoActionPerformed
+
+    private void btnActualizarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPartidoActionPerformed
+        // TODO add your handling code here:
+        
+           String municipio=null;
+
+        
+        
+        try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                sentencia=conexion.getConexion().createStatement(); 
+                
+            
+          
+            ResultSet resultado =sentencia.executeQuery("select m.MUNICIPIO_ID AS ID from  MUNICIPIO m, PARTIDO p "
+                    + "WHERE p.PARTIDO_ID = '"+this.txtIdPartido+"'"); 
+                     
+                 municipio = resultado.getString("municipio_id");
+             
+           
+            
+            
+            
+              
+           
+        resultado.close();
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+        
+        
+        objPar.actualizarPar(this.txtIdPartido.getText(), this.txtNombrePartido.getText(),this.txtSiglasPartido.getText(),this.txtDireccionPartido.getText(), municipio);
+    
+    }//GEN-LAST:event_btnActualizarPartidoActionPerformed
+
+    private void btnEliminarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPartidoActionPerformed
+        // TODO add your handling code here:
+        
+        objPar.eliminarVot(this.txtIdPartido.getText());
+    }//GEN-LAST:event_btnEliminarPartidoActionPerformed
+
+    private void btnAtrasPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasPartidoActionPerformed
+        // TODO add your handling code here:
+        
+        this.JDPartido.hide();
+    }//GEN-LAST:event_btnAtrasPartidoActionPerformed
 
     /**
      * @param args the command line arguments
