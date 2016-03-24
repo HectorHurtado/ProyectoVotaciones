@@ -109,6 +109,8 @@ public class Formulario extends javax.swing.JFrame {
         txtNombrePartido = new javax.swing.JTextField();
         txtSiglasPartido = new javax.swing.JTextField();
         txtDireccionPartido = new javax.swing.JTextField();
+        btnAgregarMunicipioPartido = new javax.swing.JButton();
+        btnEliminarMunicipioPartido = new javax.swing.JButton();
         JDMesaDeVotacionVotante = new javax.swing.JDialog();
         jLabel14 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -208,6 +210,8 @@ public class Formulario extends javax.swing.JFrame {
         btnOpcionMesa = new javax.swing.JButton();
         btnOpcionJurado = new javax.swing.JButton();
 
+        JDMunicipio.setMinimumSize(new java.awt.Dimension(345, 425));
+
         jLabel2.setText("MUNICIPIO");
 
         jLabel3.setText("Nombre:");
@@ -257,48 +261,50 @@ public class Formulario extends javax.swing.JFrame {
                 .addComponent(btnBuscarMunicipio)
                 .addGap(44, 44, 44)
                 .addComponent(btnEliminarMunicipio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(btnAtrasMunicipio)
                 .addGap(29, 29, 29))
             .addGroup(JDMunicipioLayout.createSequentialGroup()
-                .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtPTotalMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(JDMunicipioLayout.createSequentialGroup()
-                            .addGap(51, 51, 51)
-                            .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(JDMunicipioLayout.createSequentialGroup()
-                                    .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtPTotalMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(JDMunicipioLayout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(JDMunicipioLayout.createSequentialGroup()
                                         .addComponent(jLabel4)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(109, 109, 109))
-                                .addGroup(JDMunicipioLayout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addGap(31, 31, 31)
-                                    .addComponent(txtIdMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(JDMunicipioLayout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtNombreMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDMunicipioLayout.createSequentialGroup()
-                                    .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDMunicipioLayout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtPAVotarMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(btnRegistrarMunicipio, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addGap(1, 1, 1))))
-                        .addGroup(JDMunicipioLayout.createSequentialGroup()
-                            .addGap(59, 59, 59)
-                            .addComponent(lblVotosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(103, Short.MAX_VALUE))
+                                        .addGap(115, 115, 115))
+                                    .addGroup(JDMunicipioLayout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(txtIdMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(JDMunicipioLayout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtNombreMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDMunicipioLayout.createSequentialGroup()
+                                        .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDMunicipioLayout.createSequentialGroup()
+                                                .addComponent(jLabel5)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtPAVotarMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(btnRegistrarMunicipio, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(1, 1, 1))))
+                            .addGroup(JDMunicipioLayout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addComponent(lblVotosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(JDMunicipioLayout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JDMunicipioLayout.setVerticalGroup(
             JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JDMunicipioLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(44, 44, 44)
                 .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(JDMunicipioLayout.createSequentialGroup()
                         .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -308,7 +314,7 @@ public class Formulario extends javax.swing.JFrame {
                     .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtNombreMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtPTotalMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -327,6 +333,8 @@ public class Formulario extends javax.swing.JFrame {
                     .addComponent(btnEliminarMunicipio))
                 .addGap(20, 20, 20))
         );
+
+        JDVotante.setMinimumSize(new java.awt.Dimension(540, 570));
 
         jLabel6.setText("VOTANTES");
 
@@ -525,6 +533,8 @@ public class Formulario extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
+        JDPartido.setMinimumSize(new java.awt.Dimension(455, 425));
+
         jLabel23.setText("PARTIDO");
 
         jLabel24.setText("Id:");
@@ -572,6 +582,20 @@ public class Formulario extends javax.swing.JFrame {
             }
         });
 
+        btnAgregarMunicipioPartido.setText("Agregar Municipio");
+        btnAgregarMunicipioPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarMunicipioPartidoActionPerformed(evt);
+            }
+        });
+
+        btnEliminarMunicipioPartido.setText("Eliminar  Municipio");
+        btnEliminarMunicipioPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarMunicipioPartidoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout JDPartidoLayout = new javax.swing.GroupLayout(JDPartido.getContentPane());
         JDPartido.getContentPane().setLayout(JDPartidoLayout);
         JDPartidoLayout.setHorizontalGroup(
@@ -586,19 +610,6 @@ public class Formulario extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel26)
-                            .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(JDPartidoLayout.createSequentialGroup()
-                                    .addComponent(jLabel27)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtDireccionPartido)
-                                    .addGap(13, 13, 13))
-                                .addGroup(JDPartidoLayout.createSequentialGroup()
-                                    .addComponent(jLabel28)
-                                    .addGap(41, 41, 41)
-                                    .addComponent(cmbMunicipioPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(JDPartidoLayout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(txtSiglasPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(JDPartidoLayout.createSequentialGroup()
                                 .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel25)
@@ -606,8 +617,19 @@ public class Formulario extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtIdPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNombrePartido, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                                    .addComponent(txtNombrePartido, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(JDPartidoLayout.createSequentialGroup()
+                                .addComponent(jLabel27)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDireccionPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JDPartidoLayout.createSequentialGroup()
+                                .addComponent(jLabel28)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbMunicipioPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JDPartidoLayout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(txtSiglasPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnRegistrarPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnBuscarPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -615,7 +637,11 @@ public class Formulario extends javax.swing.JFrame {
                             .addComponent(btnEliminarPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(21, 21, 21))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDPartidoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(btnAgregarMunicipioPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnEliminarMunicipioPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(btnAtrasPartido)
                 .addContainerGap())
         );
@@ -653,14 +679,19 @@ public class Formulario extends javax.swing.JFrame {
                     .addComponent(txtDireccionPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEliminarPartido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
                     .addComponent(cmbMunicipioPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(btnAtrasPartido)
+                .addGap(76, 76, 76)
+                .addGroup(JDPartidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAtrasPartido)
+                    .addComponent(btnAgregarMunicipioPartido)
+                    .addComponent(btnEliminarMunicipioPartido))
                 .addContainerGap())
         );
+
+        JDMesaDeVotacionVotante.setMinimumSize(new java.awt.Dimension(465, 350));
 
         jLabel14.setText("CONSULTA DE MESA DE VOTACION");
 
@@ -743,6 +774,8 @@ public class Formulario extends javax.swing.JFrame {
                 .addComponent(AtrasConsultarMesaDeVotacion)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
+
+        JDCartonDeVotaciones.setMinimumSize(new java.awt.Dimension(630, 385));
 
         jLabel29.setText("CARTON DE VOTACION ");
 
@@ -1382,6 +1415,11 @@ public class Formulario extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         this.JDMunicipio.show();
+        
+       
+                                  
+        
+        
     }//GEN-LAST:event_btnOpcionMunicipioActionPerformed
 
     private void btnOpcionVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionVotanteActionPerformed
@@ -1446,6 +1484,45 @@ public class Formulario extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         this.JDPartido.show();
+        
+        
+         this.cmbMunicipioPartido.removeAllItems();
+        
+        try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                
+            sentencia=conexion.getConexion().createStatement(); 
+            ResultSet resultado=sentencia.executeQuery("select NOMBRE from MUNICIPIO"); 
+            
+           while (resultado.next())
+            {
+                
+
+               String tmpStrObtenido = resultado.getString("NOMBRE");
+               this. cmbMunicipioPartido.addItem(tmpStrObtenido);
+        
+            }
+           
+          
+           
+             resultado.close();
+        conexion.getConexion().close();
+           
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                    
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       
+                       }
     }//GEN-LAST:event_btnOpcionPartidoActionPerformed
 
     private void btnBuscarVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVotanteActionPerformed
@@ -1751,49 +1828,36 @@ public class Formulario extends javax.swing.JFrame {
             }
            
            
-           this.cbmMunicipioVotante.removeAllItems();
-        this.cmbMesaVotante.removeAllItems();
+           this.cmbAlcaldesCarton.removeAllItems();
+           this.cmbSenadorCarton.removeAllItems();
         
        
             
         
                 
             
-            ResultSet resultado2=sentencia.executeQuery("select c.NOMBRE from CANDIDATO c, PARTIDO p , MUNICIPIO m "
-                    + "where c.TIPO= 'Alcalde' AND c.PARTIDO_ID = p.PARTIDO_ID AND p.MUNICIPIO_ID = m.MUNICIPIO_ID "); 
-            
-           while (resultado.next())
+            ResultSet resultado2=sentencia.executeQuery("select DISTINCT c.NOMBRE AS NOMBRE from VOTANTE v,CANDIDATO c "
+                    + "where v.CEDULA="+this.txtCedulaCarton.getText() +"AND c.TIPO= 'Alcalde' AND v.MUNICIPIO_ID = c.MUNICIPIO_ID");
+           while (resultado2.next())
             {
                 
 
-               String tmpStrObtenido = resultado.getString("NOMBRE");
-               this. cbmMunicipioVotante.addItem(tmpStrObtenido);
+               String tmpStrObtenido = resultado2.getString("NOMBRE");
+               this.cmbAlcaldesCarton.addItem(tmpStrObtenido);
         
             }
            
            
-            ResultSet resultado2=sentencia.executeQuery("select c.NOMBRE AS NOMBRE_CANDIDATO from  CANDIDATO c, VOTANTE v "
-                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
+            ResultSet resultado3=sentencia.executeQuery("select DISTINCT c.NOMBRE AS NOMBRE from VOTANTE v,CANDIDATO c "
+                    + "where v.CEDULA="+this.txtCedulaCarton.getText() +"AND c.TIPO= 'Senado' AND v.MUNICIPIO_ID = c.MUNICIPIO_ID");
+        
                      
-             while (resultado2.next())
+             while (resultado3.next())
             {
                 
 
-               String tmpStrObtenido2 = resultado2.getString("nombre");
-               this.cmbAlcaldesCarton.addItem(tmpStrObtenido2);
-        
-            }
-            
-            
-            ResultSet resultado3=sentencia.executeQuery("select m.NUMERO AS NUMERO_MESA from  MESA m, VOTANTE v "
-                    + "WHERE v.CEDULA = '"+this.txtCedulaVotante+"'"); 
-           
-             while (resultado2.next())
-            {
-                
-
-               String tmpStrObtenido2 = resultado2.getString("nombre");
-               this.cmbSenadorCarton.addItem(tmpStrObtenido2);
+               String tmpStrObtenido3 = resultado3.getString("NOMBRE");
+               this.cmbSenadorCarton.addItem(tmpStrObtenido3);
         
             }
             
@@ -1829,17 +1893,22 @@ public class Formulario extends javax.swing.JFrame {
             sentencia=conexion.getConexion().createStatement(); 
             ResultSet resultado=sentencia.executeQuery("select CANTIDAD_VOTOS from CANDIDATO where NOMBRE = '"
                     +this.cmbAlcaldesCarton.getSelectedItem()+"'");
+           
+            while(resultado.next())
+            {
+             cantidad=Integer.parseInt(resultado.getString("CANTIDAD_VOTOS"));
+            }
             
-             cantidad=Integer.parseInt(resultado.getString("totalVotos"));
-             
              cantidad=cantidad+1;
             
              
             String instruccion=("update CANDIDATO set CANTIDAD_VOTOS=? where NOMBRE='"
-                    +this.cmbSenadorCarton.getSelectedItem()+"'");
+                    +this.cmbAlcaldesCarton.getSelectedItem()+"'");
              conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
             
             conexion.sentencia.setInt(1, cantidad);
+            
+            conexion.sentencia.execute();
             
             
                 
@@ -1871,21 +1940,22 @@ public class Formulario extends javax.swing.JFrame {
             sentencia=conexion.getConexion().createStatement(); 
             ResultSet resultado=sentencia.executeQuery("select CANTIDAD_VOTOS from CANDIDATO where NOMBRE = '"
                     +this.cmbSenadorCarton.getSelectedItem()+"'");
-            
-             cantidad=Integer.parseInt(resultado.getString("totalVotos"));
-             
+            while(resultado.next())
+            {
+             cantidad=Integer.parseInt(resultado.getString("CANTIDAD_VOTOS"));
+            }
              cantidad=cantidad+1;
             
              
             String instruccion=("update CANDIDATO set CANTIDAD_VOTOS=? where NOMBRE='"
                     +this.cmbSenadorCarton.getSelectedItem()+"'"); 
             
-            
-            
+           
              conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
             
             conexion.sentencia.setInt(1, cantidad);
             
+             conexion.sentencia.execute();
             
                 
         resultado.close();  
@@ -1936,53 +2006,15 @@ public class Formulario extends javax.swing.JFrame {
     private void btnRegistrarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPartidoActionPerformed
         // TODO add your handling code here:
         
-      String municipio=null;
+        objPar.guardarPar(this.txtIdPartido.getText(), this.txtNombrePartido.getText(),this.txtSiglasPartido.getText(),this.txtDireccionPartido.getText());
         
-        
-        try { 
-            
-               ConectarBD conexion=new ConectarBD(); 
-                Statement sentencia; 
-                sentencia=conexion.getConexion().createStatement(); 
-                
-            
-          
-            ResultSet resultado =sentencia.executeQuery("select MUNICIPIO_ID from  MUNICIPIO "
-                    + "WHERE NOMBRE = '"+this.cmbMunicipioPartido.getSelectedItem()+"'"); 
-                     
-                 municipio = resultado.getString("municipio_id");
-             
-           
-            
-            
-            
-              
-           
-        resultado.close();
-        conexion.getConexion().close();
-        }
-             catch(SQLException e ) 
-                { 
-                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
-                    ,JOptionPane.INFORMATION_MESSAGE); 
-                } 
-                    catch(Exception e) 
-                       { 
-                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
-                        ,JOptionPane.INFORMATION_MESSAGE); 
-                       }
-    
-        
-        
-        objPar.guardarPar(this.txtIdPartido.getText(), this.txtNombrePartido.getText(),this.txtSiglasPartido.getText(),this.txtDireccionPartido.getText(), municipio);
-    
     }//GEN-LAST:event_btnRegistrarPartidoActionPerformed
 
     private void btnBuscarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPartidoActionPerformed
         // TODO add your handling code here:
         
         
-        
+  this.cmbMunicipioPartido.removeAllItems();
 
         try { 
             
@@ -1991,7 +2023,7 @@ public class Formulario extends javax.swing.JFrame {
                 
             sentencia=conexion.getConexion().createStatement(); 
             ResultSet resultado=sentencia.executeQuery("select * from PARTIDO where PARTIDO_ID = '"
-                    +this.txtIdPartido+"'"); 
+                    +this.txtIdPartido.getText()+"'"); 
             
            while (resultado.next())
             {
@@ -2002,11 +2034,16 @@ public class Formulario extends javax.swing.JFrame {
 
             }
            
-            ResultSet resultado2=sentencia.executeQuery("select m.NOMBRE AS NOMBRE_MUNICIPIO from  MUNICIPIO m, PARTIDO p "
-                    + "WHERE p.PARTIDO_ID = '"+this.txtIdPartido+"'"); 
+            ResultSet resultado2=sentencia.executeQuery("select m.NOMBRE AS NOMBRE_MUNICIPIO from  MUNICIPIO m, MUNICIPIO_PARTIDO mp "
+                    + "WHERE mp.PARTIDO_ID = '"+this.txtIdPartido.getText()+"' AND mp.MUNICIPIO_ID = m.MUNICIPIO_ID"); 
                      
-             String tmpStrObtenido2 = resultado2.getString("municipio");
-               this. cbmMunicipioVotante.addItem(tmpStrObtenido2);
+             
+            while (resultado2.next())
+            {
+            String tmpStrObtenido2 = resultado2.getString("NOMBRE_MUNICIPIO");
+               this.cmbMunicipioPartido.addItem(tmpStrObtenido2);
+               
+            }
                 
                     
            
@@ -2030,52 +2067,15 @@ public class Formulario extends javax.swing.JFrame {
     private void btnActualizarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPartidoActionPerformed
         // TODO add your handling code here:
         
-           String municipio=null;
-
         
-        
-        try { 
-            
-               ConectarBD conexion=new ConectarBD(); 
-                Statement sentencia; 
-                sentencia=conexion.getConexion().createStatement(); 
-                
-            
-          
-            ResultSet resultado =sentencia.executeQuery("select m.MUNICIPIO_ID AS ID from  MUNICIPIO m, PARTIDO p "
-                    + "WHERE p.PARTIDO_ID = '"+this.txtIdPartido+"'"); 
-                     
-                 municipio = resultado.getString("municipio_id");
-             
-           
-            
-            
-            
-              
-           
-        resultado.close();
-        conexion.getConexion().close();
-        }
-             catch(SQLException e ) 
-                { 
-                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
-                    ,JOptionPane.INFORMATION_MESSAGE); 
-                } 
-                    catch(Exception e) 
-                       { 
-                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
-                        ,JOptionPane.INFORMATION_MESSAGE); 
-                       }
-        
-        
-        objPar.actualizarPar(this.txtIdPartido.getText(), this.txtNombrePartido.getText(),this.txtSiglasPartido.getText(),this.txtDireccionPartido.getText(), municipio);
+        objPar.actualizarPar(this.txtIdPartido.getText(), this.txtNombrePartido.getText(),this.txtSiglasPartido.getText(),this.txtDireccionPartido.getText());
     
     }//GEN-LAST:event_btnActualizarPartidoActionPerformed
 
     private void btnEliminarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPartidoActionPerformed
         // TODO add your handling code here:
         
-        objPar.eliminarVot(this.txtIdPartido.getText());
+        objPar.eliminarPar(this.txtIdPartido.getText());
     }//GEN-LAST:event_btnEliminarPartidoActionPerformed
 
     private void btnAtrasPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasPartidoActionPerformed
@@ -2138,6 +2138,90 @@ public class Formulario extends javax.swing.JFrame {
         this.JDMunicipio.hide();
     }//GEN-LAST:event_btnAtrasMunicipioActionPerformed
 
+    private void btnAgregarMunicipioPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMunicipioPartidoActionPerformed
+        // TODO add your handling code here:
+        
+        String municipio=null;
+         
+        
+               try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                
+            sentencia=conexion.getConexion().createStatement(); 
+            ResultSet resultado=sentencia.executeQuery("select MUNICIPIO_ID from MUNICIPIO"
+                    + " where NOMBRE = '"+this.cmbMunicipioPartido.getSelectedItem()+"'"); 
+            
+           while (resultado.next())
+            {
+               municipio=resultado.getString("MUNICIPIO_ID");
+                
+            }
+    
+        
+              
+           
+        resultado.close();
+    
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+        
+        objPar.registrarMunicipios(this.txtIdPartido.getText(), municipio);
+    }//GEN-LAST:event_btnAgregarMunicipioPartidoActionPerformed
+
+    private void btnEliminarMunicipioPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMunicipioPartidoActionPerformed
+        // TODO add your handling code here:
+        
+         String municipio=null;
+         
+         
+try { 
+            
+               ConectarBD conexion=new ConectarBD(); 
+                Statement sentencia; 
+                
+            sentencia=conexion.getConexion().createStatement(); 
+            ResultSet resultado=sentencia.executeQuery("select MUNICIPIO_ID from MUNICIPIO"
+                    + " where NOMBRE = '"+this.cmbMunicipioPartido.getSelectedItem()+"'"); 
+            
+           while (resultado.next())
+            {
+               municipio=resultado.getString("MUNICIPIO_ID");
+                
+            }
+    
+        
+              
+           
+        resultado.close();
+    
+        conexion.getConexion().close();
+        }
+             catch(SQLException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
+                    catch(Exception e) 
+                       { 
+                        JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
+                        ,JOptionPane.INFORMATION_MESSAGE); 
+                       }
+                
+        objPar.eliminarMunicipio(this.txtIdPartido.getText(), municipio);
+    }//GEN-LAST:event_btnEliminarMunicipioPartidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2195,6 +2279,7 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JButton btbVotarAlcaldeCarton;
     private javax.swing.JButton btnActualizarPartido;
     private javax.swing.JButton btnActualizarVotante;
+    private javax.swing.JButton btnAgregarMunicipioPartido;
     private javax.swing.JButton btnAtrasCarton;
     private javax.swing.JButton btnAtrasMunicipio;
     private javax.swing.JButton btnAtrasPartido;
@@ -2206,6 +2291,7 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultarMesaDeVotacion;
     private javax.swing.JButton btnCosultarMesaVotante;
     private javax.swing.JButton btnEliminarMunicipio;
+    private javax.swing.JButton btnEliminarMunicipioPartido;
     private javax.swing.JButton btnEliminarPartido;
     private javax.swing.JButton btnEliminarVotante;
     private javax.swing.JButton btnOpcionCandidato;

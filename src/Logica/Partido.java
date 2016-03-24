@@ -13,7 +13,7 @@ import java.sql.SQLException;
  */
 public class Partido {
     
-     public String guardarPar(String a,String b,String c,String d, String ee){
+     public String guardarPar(String a,String b,String c,String d){
     String men="";
 try{
             ConectarBD conexion= new ConectarBD();
@@ -22,18 +22,14 @@ try{
             String nombre =  b;
             String siglas = c;
             String direccion= d;
-            int municipio= Integer.parseInt(ee);
-      
-            
-           
-
-            String instruccion="insert into PARTIDO values (?,?,?,?,?)";
+         
+            String instruccion="insert into PARTIDO values (?,?,?,?)";
             conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
             conexion.sentencia.setInt(1, id);
             conexion.sentencia.setString(2, nombre);
             conexion.sentencia.setString(3, siglas);
             conexion.sentencia.setString(4, direccion);
-            conexion.sentencia.setInt(5, municipio);
+            
         
 
             conexion.sentencia.execute();
@@ -49,7 +45,7 @@ return men;
 
 }  
   
-  public String actualizarPar(String a,String b,String c,String d,String ee)
+  public String actualizarPar(String a,String b,String c,String d)
   {   
          String men="";    
          try{
@@ -58,20 +54,17 @@ return men;
             int id = Integer.parseInt(a);
             String nombre =  b;
             String siglas = c;
-            String direccion= d;
-            int municipio= Integer.parseInt(ee);    
+            String direccion= d;   
             
            
 
-             String instruccion= "Update VOTANTE set NOMBRE=?,SIGLAS=?,DIRECCION=?,MUNICIPIO=?"
+             String instruccion= "Update PARTIDO set NOMBRE=?,SIGLAS=?,DIRECCION=?"
                      + "where PARTIDO_ID='" +id+"'";
             conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
             
-            conexion.sentencia.setInt(1, id);
-            conexion.sentencia.setString(2, nombre);
-            conexion.sentencia.setString(3, siglas);
-            conexion.sentencia.setString(4, direccion);
-            conexion.sentencia.setInt(5, municipio);
+            conexion.sentencia.setString(1, nombre);
+            conexion.sentencia.setString(2, siglas);
+            conexion.sentencia.setString(3, direccion);
             conexion.sentencia.execute();
             men="reguistro modificado";
 
@@ -81,12 +74,13 @@ return men;
             catch(SQLException e)
             {
                 men ="Erros://"+e;
+                System.out.println(men);
             }
             return men;
   }
     
   
-   public String eliminarVot(String a)
+   public String eliminarPar(String a)
    {
        
        String men="";    
@@ -94,15 +88,88 @@ return men;
              ConectarBD conexion= new ConectarBD();
             int id = Integer.parseInt(a);
             
+          
+            String instruccion2= "Delete from MUNICIPIO_PARTIDO "
+                     + "where PARTIDO_ID='" +id+"'";
+            conexion.sentencia=conexion.getConexion().prepareStatement(instruccion2);
+            conexion.sentencia.execute();
+ 
+            
+            
             String instruccion= "Delete from PARTIDO "
                      + "where PARTIDO_ID='" +id+"'";
             conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
+            conexion.sentencia.execute();
+            
+            
+            
             
             conexion.getConexion().close();
             }
             catch(SQLException e)
             {
                 men ="Erros://"+e;
+                 System.out.println(men);
+            }
+            
+            
+        
+       
+       
+       return men;
+   }
+   
+   
+   public String registrarMunicipios(String a, String b)
+   {
+       
+         String men="";
+    try{
+            ConectarBD conexion= new ConectarBD();
+            
+            int id_partido = Integer.parseInt(a);
+            int id_municipio = Integer.parseInt(b);
+         
+            String instruccion="insert into MUNICIPIO_PARTIDO values (?,?)";
+            conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
+            conexion.sentencia.setInt(1, id_municipio);
+            conexion.sentencia.setInt(2, id_partido);
+
+            conexion.sentencia.execute();
+            men= "Registro insertado";
+        }
+        catch (Exception e){
+            men="Error sql "+e;
+            System.out.println(men);
+
+        }
+
+    return men;
+       
+       
+   }
+   
+   
+    public String eliminarMunicipio(String a, String b)
+   {
+       
+       String men="";    
+         try{
+             ConectarBD conexion= new ConectarBD();
+            int id_partido = Integer.parseInt(a);
+            int id_municipio = Integer.parseInt(b);
+            
+            String instruccion= "Delete from MUNICIPIO_PARTIDO "
+                     + "where PARTIDO_ID= " +id_partido+" AND MUNICIPIO_ID ="+id_municipio;
+            conexion.sentencia=conexion.getConexion().prepareStatement(instruccion);
+            conexion.sentencia.execute();
+            
+            conexion.getConexion().close();
+            }
+            catch(SQLException e)
+            {
+                men ="Erros://"+e;
+                 System.out.println(men);
             }
             return men;
        
