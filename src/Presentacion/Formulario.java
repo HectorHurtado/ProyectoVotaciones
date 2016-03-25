@@ -210,7 +210,8 @@ public class Formulario extends javax.swing.JFrame {
         btnOpcionMesa = new javax.swing.JButton();
         btnOpcionJurado = new javax.swing.JButton();
 
-        JDMunicipio.setMinimumSize(new java.awt.Dimension(345, 425));
+        JDMunicipio.setMinimumSize(new java.awt.Dimension(400, 500));
+        JDMunicipio.setPreferredSize(new java.awt.Dimension(345, 450));
 
         jLabel2.setText("MUNICIPIO");
 
@@ -261,7 +262,7 @@ public class Formulario extends javax.swing.JFrame {
                 .addComponent(btnBuscarMunicipio)
                 .addGap(44, 44, 44)
                 .addComponent(btnEliminarMunicipio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(btnAtrasMunicipio)
                 .addGap(29, 29, 29))
             .addGroup(JDMunicipioLayout.createSequentialGroup()
@@ -314,7 +315,7 @@ public class Formulario extends javax.swing.JFrame {
                     .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtNombreMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(JDMunicipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtPTotalMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -334,7 +335,7 @@ public class Formulario extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        JDVotante.setMinimumSize(new java.awt.Dimension(540, 570));
+        JDVotante.setMinimumSize(new java.awt.Dimension(540, 630));
 
         jLabel6.setText("VOTANTES");
 
@@ -525,7 +526,7 @@ public class Formulario extends javax.swing.JFrame {
                 .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(cmbMesaVotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(JDVotanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCosultarMesaVotante)
                     .addComponent(btnVotar)
@@ -533,7 +534,8 @@ public class Formulario extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        JDPartido.setMinimumSize(new java.awt.Dimension(455, 425));
+        JDPartido.setMinimumSize(new java.awt.Dimension(600, 500));
+        JDPartido.setPreferredSize(new java.awt.Dimension(550, 500));
 
         jLabel23.setText("PARTIDO");
 
@@ -691,7 +693,7 @@ public class Formulario extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        JDMesaDeVotacionVotante.setMinimumSize(new java.awt.Dimension(465, 350));
+        JDMesaDeVotacionVotante.setMinimumSize(new java.awt.Dimension(465, 400));
 
         jLabel14.setText("CONSULTA DE MESA DE VOTACION");
 
@@ -775,7 +777,7 @@ public class Formulario extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        JDCartonDeVotaciones.setMinimumSize(new java.awt.Dimension(630, 385));
+        JDCartonDeVotaciones.setMinimumSize(new java.awt.Dimension(700, 400));
 
         jLabel29.setText("CARTON DE VOTACION ");
 
@@ -1404,11 +1406,32 @@ public class Formulario extends javax.swing.JFrame {
     private void btnRegistrarMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMunicipioActionPerformed
         // TODO add your handling code here:
        
-    
-              objMun.guardarMun(this.txtIdMunicipio.getText(), this.txtNombreMunicipio.getText(), this.txtPTotalMunicipio.getText(),this.txtPAVotarMunicipio.getText());
+     try{
+              
+          objMun.guardarMun(this.txtIdMunicipio.getText(), this.txtNombreMunicipio.getText(), this.txtPTotalMunicipio.getText(),this.txtPAVotarMunicipio.getText());
        
 
-                
+                                                    
+                                                  }
+                                                      catch (NumberFormatException e) 
+                                                    {
+                                                            JOptionPane.showMessageDialog(this,"Error" + e,"Informacion",
+                                                    JOptionPane.WARNING_MESSAGE);
+                                                    }
+     
+     
+     
+      this.txtIdMunicipio.setText("");
+        this.txtNombreMunicipio.setText("");
+        this.txtPTotalMunicipio.setText("");
+        this.txtPAVotarMunicipio.setText("");
+        this.lblVotosTotales.setText("Votos totales: ");
+       
+                                                     
+     
+     
+     
+                                                    
     }//GEN-LAST:event_btnRegistrarMunicipioActionPerformed
 
     private void btnOpcionMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionMunicipioActionPerformed
@@ -1416,15 +1439,25 @@ public class Formulario extends javax.swing.JFrame {
         
         this.JDMunicipio.show();
         
-       
-                                  
-        
+        this.txtIdMunicipio.setText("");
+        this.txtNombreMunicipio.setText("");
+        this.txtPTotalMunicipio.setText("");
+        this.txtPAVotarMunicipio.setText("");
+        this.lblVotosTotales.setText("Votos totales: ");
+          
         
     }//GEN-LAST:event_btnOpcionMunicipioActionPerformed
 
     private void btnOpcionVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionVotanteActionPerformed
         // TODO add your handling code here:
         this.JDVotante.show();
+        
+        this.txtCedulaVotante.setText("");
+        this.txtNombreVotante.setText("");
+        this.txtSexoVotante.setText("");
+        this.txtEdadVotante.setText("");
+        this.txtDireccionVotante.setText("");
+        
         this.cbmMunicipioVotante.removeAllItems();
         this.cmbMesaVotante.removeAllItems();
         
@@ -1485,8 +1518,8 @@ public class Formulario extends javax.swing.JFrame {
         
         this.JDPartido.show();
         
-        
-         this.cmbMunicipioPartido.removeAllItems();
+        this.cmbMunicipioPartido.removeAllItems();
+         
         
         try { 
             
@@ -1494,7 +1527,7 @@ public class Formulario extends javax.swing.JFrame {
                 Statement sentencia; 
                 
             sentencia=conexion.getConexion().createStatement(); 
-            ResultSet resultado=sentencia.executeQuery("select NOMBRE from MUNICIPIO"); 
+            ResultSet resultado=sentencia.executeQuery("select DISTINCT NOMBRE from MUNICIPIO"); 
             
            while (resultado.next())
             {
@@ -1514,15 +1547,20 @@ public class Formulario extends javax.swing.JFrame {
              catch(SQLException e ) 
                 { 
                     JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
-                    ,JOptionPane.INFORMATION_MESSAGE); 
+                    ,JOptionPane.WARNING_MESSAGE); 
                     
                 } 
                     catch(Exception e) 
                        { 
                         JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
-                        ,JOptionPane.INFORMATION_MESSAGE); 
+                        ,JOptionPane.WARNING_MESSAGE); 
                        
                        }
+        
+       this.txtIdPartido.setText("");
+       this.txtNombrePartido.setText("");
+       this.txtSiglasPartido.setText("");
+       this.txtDireccionPartido.setText("");
     }//GEN-LAST:event_btnOpcionPartidoActionPerformed
 
     private void btnBuscarVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVotanteActionPerformed
@@ -1640,21 +1678,40 @@ public class Formulario extends javax.swing.JFrame {
         resultado.close();
         resultado2.close();
         conexion.getConexion().close();
+        
+         
+         
         }
              catch(SQLException e ) 
                 { 
                     JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
-                    ,JOptionPane.INFORMATION_MESSAGE); 
+                    ,JOptionPane.WARNING_MESSAGE); 
                 } 
                     catch(Exception e) 
                        { 
                         JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
-                        ,JOptionPane.INFORMATION_MESSAGE); 
+                        ,JOptionPane.WARNING_MESSAGE); 
                        }
         
-        
-        objVot.guardarVot(this.txtCedulaVotante.getText(), this.txtNombreVotante.getText(), this.txtSexoVotante.getText(),
+        try
+        {
+         objVot.guardarVot(this.txtCedulaVotante.getText(), this.txtNombreVotante.getText(), this.txtSexoVotante.getText(),
                 this.txtEdadVotante.getText(),this.txtDireccionVotante.getText(),municipio,mesa);
+         
+          this.txtCedulaVotante.setText("");
+        this.txtNombreVotante.setText("");
+        this.txtSexoVotante.setText("");
+        this.txtEdadVotante.setText("");
+        this.txtDireccionVotante.setText("");
+        } catch (NumberFormatException e) 
+                {
+                   JOptionPane.showMessageDialog(this,"Error" + e,"Informacion",
+                           JOptionPane.WARNING_MESSAGE);
+                }
+        
+        
+        
+       
     }//GEN-LAST:event_btnRegistrarVotanteActionPerformed
 
     private void btnActualizarVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarVotanteActionPerformed
@@ -1697,6 +1754,9 @@ public class Formulario extends javax.swing.JFrame {
         resultado.close();
         resultado2.close();
         conexion.getConexion().close();
+        
+        
+        
         }
              catch(SQLException e ) 
                 { 
@@ -1709,25 +1769,79 @@ public class Formulario extends javax.swing.JFrame {
                         ,JOptionPane.INFORMATION_MESSAGE); 
                        }
         
-        
-        objVot.actualizarVot(this.txtCedulaVotante.getText(), this.txtNombreVotante.getText(), this.txtSexoVotante.getText(),
+        try
+        {
+         objVot.actualizarVot(this.txtCedulaVotante.getText(), this.txtNombreVotante.getText(), this.txtSexoVotante.getText(),
                 this.txtEdadVotante.getText(),this.txtDireccionVotante.getText(),municipio,mesa);
+         
+        this.txtCedulaVotante.setText("");
+        this.txtNombreVotante.setText("");
+        this.txtSexoVotante.setText("");
+        this.txtEdadVotante.setText("");
+        this.txtDireccionVotante.setText("");
+        
+        } catch (NumberFormatException e) 
+                {
+                   JOptionPane.showMessageDialog(this,"Error" + e,"Informacion",
+                           JOptionPane.WARNING_MESSAGE);
+                }
+        
+        
+        
+       
     }//GEN-LAST:event_btnActualizarVotanteActionPerformed
 
     private void btnEliminarVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVotanteActionPerformed
         // TODO add your handling code here:
         
-          objVot.eliminarVot(this.txtCedulaVotante.getText());
+        int seleccion = JOptionPane.showOptionDialog(this,"¿DESEA ELIMINAR EL REGISTRO(Si/No)","Seleccione una opción",
+        JOptionPane.YES_NO_CANCEL_OPTION,
+        JOptionPane.QUESTION_MESSAGE,null,new Object[] { "Si", "No"},"Si");
+if((seleccion + 1)==1)
+    {
+            try{
+        
+            objVot.eliminarVot(this.txtCedulaVotante.getText());
+             
+          
+          
+           } catch (NumberFormatException e) 
+                {
+                   JOptionPane.showMessageDialog(this,"Error" + e,"Informacion",
+                           JOptionPane.WARNING_MESSAGE);
+                }
+            
+    }else
+{
+    JOptionPane.showMessageDialog(this,"REGISTRO NO ELIMINADO","Información",
+            JOptionPane.INFORMATION_MESSAGE);
+}
+
+             this.txtCedulaVotante.setText("");
+             this.txtNombreVotante.setText("");
+             this.txtSexoVotante.setText("");
+             this.txtEdadVotante.setText("");
+             this.txtDireccionVotante.setText("");
+          
+         
     }//GEN-LAST:event_btnEliminarVotanteActionPerformed
 
     private void btnCosultarMesaVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCosultarMesaVotanteActionPerformed
         // TODO add your handling code here:
         this.JDMesaDeVotacionVotante.show();
+        this.txtCedulaConsultarMesa.setText("");
+        this.lblNombreConsultaMesa.setText("Nombre: ");
+        this.lblMunicipioConsultaMesa.setText("Municipio: ");
+        this.lblMesaConsultaMesa.setText("Mesa: ");
+        this.lblDireccionConsultaMesa.setText("Direccion: ");
     }//GEN-LAST:event_btnCosultarMesaVotanteActionPerformed
 
     private void btnVotarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVotarActionPerformed
         // TODO add your handling code here:
         this.JDCartonDeVotaciones.show();
+        
+        this.txtCedulaCarton.setText("");
+        this.lblResultadoCedulaCarton.setText("Nombre: ");
     }//GEN-LAST:event_btnVotarActionPerformed
 
     private void btnAtrasVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasVotanteActionPerformed
@@ -1795,13 +1909,15 @@ public class Formulario extends javax.swing.JFrame {
              catch(SQLException e ) 
                 { 
                     JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
-                    ,JOptionPane.INFORMATION_MESSAGE); 
+                    ,JOptionPane.WARNING_MESSAGE); 
                 } 
                     catch(Exception e) 
                        { 
                         JOptionPane.showMessageDialog(this,"Error:"+e,"Información" 
-                        ,JOptionPane.INFORMATION_MESSAGE); 
+                        ,JOptionPane.WARNING_MESSAGE); 
                        }
+      
+                         
     }//GEN-LAST:event_btnConsultarMesaDeVotacionActionPerformed
 
     private void AtrasConsultarMesaDeVotacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasConsultarMesaDeVotacionActionPerformed
@@ -2007,14 +2123,17 @@ public class Formulario extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         objPar.guardarPar(this.txtIdPartido.getText(), this.txtNombrePartido.getText(),this.txtSiglasPartido.getText(),this.txtDireccionPartido.getText());
-        
+         this.txtIdPartido.setText("");
+       this.txtNombrePartido.setText("");
+       this.txtSiglasPartido.setText("");
+       this.txtDireccionPartido.setText("");
     }//GEN-LAST:event_btnRegistrarPartidoActionPerformed
 
     private void btnBuscarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPartidoActionPerformed
         // TODO add your handling code here:
         
         
-  this.cmbMunicipioPartido.removeAllItems();
+
 
         try { 
             
@@ -2034,21 +2153,23 @@ public class Formulario extends javax.swing.JFrame {
 
             }
            
-            ResultSet resultado2=sentencia.executeQuery("select m.NOMBRE AS NOMBRE_MUNICIPIO from  MUNICIPIO m, MUNICIPIO_PARTIDO mp "
+           /* ResultSet resultado2=sentencia.executeQuery("select DISTINCT  m.NOMBRE AS NOMBRE_MUNICIPIO from  MUNICIPIO m, MUNICIPIO_PARTIDO mp "
                     + "WHERE mp.PARTIDO_ID = '"+this.txtIdPartido.getText()+"' AND mp.MUNICIPIO_ID = m.MUNICIPIO_ID"); 
                      
              
+              
             while (resultado2.next())
             {
+                
             String tmpStrObtenido2 = resultado2.getString("NOMBRE_MUNICIPIO");
                this.cmbMunicipioPartido.addItem(tmpStrObtenido2);
                
-            }
+            }*/
                 
                     
            
         resultado.close();
-        resultado2.close();
+        //resultado2.close();
         
         conexion.getConexion().close();
         }
@@ -2069,13 +2190,32 @@ public class Formulario extends javax.swing.JFrame {
         
         
         objPar.actualizarPar(this.txtIdPartido.getText(), this.txtNombrePartido.getText(),this.txtSiglasPartido.getText(),this.txtDireccionPartido.getText());
-    
+         this.txtIdPartido.setText("");
+       this.txtNombrePartido.setText("");
+       this.txtSiglasPartido.setText("");
+       this.txtDireccionPartido.setText("");
     }//GEN-LAST:event_btnActualizarPartidoActionPerformed
 
     private void btnEliminarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPartidoActionPerformed
         // TODO add your handling code here:
-        
+         
+        int seleccion = JOptionPane.showOptionDialog(this,"¿DESEA ELIMINAR EL REGISTRO(Si/No)","Seleccione una opción",
+        JOptionPane.YES_NO_CANCEL_OPTION,
+        JOptionPane.QUESTION_MESSAGE,null,new Object[] { "Si", "No"},"Si");
+if((seleccion + 1)==1)
+    { 
         objPar.eliminarPar(this.txtIdPartido.getText());
+         this.txtIdPartido.setText("");
+       this.txtNombrePartido.setText("");
+       this.txtSiglasPartido.setText("");
+       this.txtDireccionPartido.setText("");
+       
+      }
+ else
+{
+    JOptionPane.showMessageDialog(this,"REGISTRO NO ELIMINADO","Información",
+            JOptionPane.INFORMATION_MESSAGE);
+}
     }//GEN-LAST:event_btnEliminarPartidoActionPerformed
 
     private void btnAtrasPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasPartidoActionPerformed
@@ -2097,14 +2237,21 @@ public class Formulario extends javax.swing.JFrame {
             ResultSet resultado=sentencia.executeQuery("select * from MUNICIPIO where MUNICIPIO_ID ="
                     +Integer.parseInt(this.txtIdMunicipio.getText())); 
             
+            
+             
+            
            while (resultado.next())
             {
+               
                 this.txtNombreMunicipio.setText(""+resultado.getString("NOMBRE"));
                 this.txtPTotalMunicipio.setText(""+resultado.getString("POBLACION_TOTAL"));
                 this.txtPAVotarMunicipio.setText(""+resultado.getString("POBLACION_A_VOTAR"));
                 this.lblVotosTotales.setText("Votos totales: "+resultado.getString("VOTOS_TOTALES"));
 
             }
+           
+           
+           
            
 
            
@@ -2128,8 +2275,33 @@ public class Formulario extends javax.swing.JFrame {
 
     private void btnEliminarMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMunicipioActionPerformed
         // TODO add your handling code here:
+         int seleccion = JOptionPane.showOptionDialog(this,"¿DESEA ELIMINAR EL REGISTRO(Si/No)","Seleccione una opción",
+        JOptionPane.YES_NO_CANCEL_OPTION,
+        JOptionPane.QUESTION_MESSAGE,null,new Object[] { "Si", "No"},"Si");
+if((seleccion + 1)==1)
+    {
+       try
+       {
+        objMun.eliminarMun(this.txtIdMunicipio.getText());
+       }
+        catch(NumberFormatException e ) 
+                { 
+                    JOptionPane.showMessageDialog(this,"Error SQL:"+e,"Información" 
+                    ,JOptionPane.INFORMATION_MESSAGE); 
+                } 
         
-         objMun.eliminarMun(this.txtIdMunicipio.getText());
+    }
+ else
+{
+    JOptionPane.showMessageDialog(this,"REGISTRO NO ELIMINADO","Información",
+            JOptionPane.INFORMATION_MESSAGE);
+}
+  
+   this.txtIdMunicipio.setText("");
+        this.txtNombreMunicipio.setText("");
+        this.txtPTotalMunicipio.setText("");
+        this.txtPAVotarMunicipio.setText("");
+        this.lblVotosTotales.setText("Votos totales: ");
     }//GEN-LAST:event_btnEliminarMunicipioActionPerformed
 
     private void btnAtrasMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasMunicipioActionPerformed
@@ -2183,7 +2355,13 @@ public class Formulario extends javax.swing.JFrame {
     private void btnEliminarMunicipioPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMunicipioPartidoActionPerformed
         // TODO add your handling code here:
         
-         String municipio=null;
+         
+        int seleccion = JOptionPane.showOptionDialog(this,"¿DESEA ELIMINAR EL REGISTRO(Si/No)","Seleccione una opción",
+        JOptionPane.YES_NO_CANCEL_OPTION,
+        JOptionPane.QUESTION_MESSAGE,null,new Object[] { "Si", "No"},"Si");
+if((seleccion + 1)==1)
+    {
+        String municipio=null;
          
          
 try { 
@@ -2220,6 +2398,13 @@ try {
                        }
                 
         objPar.eliminarMunicipio(this.txtIdPartido.getText(), municipio);
+        
+       }
+ else
+{
+    JOptionPane.showMessageDialog(this,"REGISTRO NO ELIMINADO","Información",
+            JOptionPane.INFORMATION_MESSAGE);
+}
     }//GEN-LAST:event_btnEliminarMunicipioPartidoActionPerformed
 
     /**

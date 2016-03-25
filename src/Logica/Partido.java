@@ -6,6 +6,7 @@
 package Logica;
 
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,12 +35,16 @@ try{
 
             conexion.sentencia.execute();
             men= "Registro insertado";
-        }
-        catch (Exception e){
-            men="Error sql "+e;
-            System.out.println(men);
-
-        }
+            conexion.getConexion().close();
+            JOptionPane.showMessageDialog(null,"Registro Insertado","Información",
+                                                    JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch(SQLException e)
+            {
+                men ="Error://"+e;
+                JOptionPane.showMessageDialog(null,"Error:"+e,"Información",
+                                                    JOptionPane.WARNING_MESSAGE);
+            }
 
 return men;
 
@@ -70,12 +75,17 @@ return men;
 
 
             conexion.getConexion().close();
-            }
-            catch(SQLException e)
-            {
-                men ="Erros://"+e;
-                System.out.println(men);
-            }
+            
+            JOptionPane.showMessageDialog(null,"Registro Actualizado","Información",
+                                                    JOptionPane.INFORMATION_MESSAGE);
+            men= "Registro insertado";
+         }
+        catch (Exception e){
+            men="Error sql "+e;
+            JOptionPane.showMessageDialog(null,"Error:"+e,"Información",
+                                                    JOptionPane.WARNING_MESSAGE);
+
+              }
             return men;
   }
     
@@ -105,11 +115,14 @@ return men;
             
             
             conexion.getConexion().close();
+             JOptionPane.showMessageDialog(null,"REGISTRO ELIMINADO","Información",
+                                                    JOptionPane.INFORMATION_MESSAGE);
             }
             catch(SQLException e)
             {
-                men ="Erros://"+e;
-                 System.out.println(men);
+                men ="Error://"+e;
+                JOptionPane.showMessageDialog(null,"Error:"+e,"Información",
+                                                    JOptionPane.WARNING_MESSAGE);
             }
             
             
@@ -137,12 +150,15 @@ return men;
 
             conexion.sentencia.execute();
             men= "Registro insertado";
-        }
-        catch (Exception e){
-            men="Error sql "+e;
-            System.out.println(men);
-
-        }
+        JOptionPane.showMessageDialog(null,"Registro Insertado","Información",
+                                                    JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch(SQLException e)
+            {
+                men ="Error://"+e;
+                JOptionPane.showMessageDialog(null,"Error:"+e,"Información",
+                                                    JOptionPane.WARNING_MESSAGE);
+            }
 
     return men;
        
@@ -165,11 +181,14 @@ return men;
             conexion.sentencia.execute();
             
             conexion.getConexion().close();
+            JOptionPane.showMessageDialog(null,"REGISTRO ELIMINADO","Información",
+                                                    JOptionPane.INFORMATION_MESSAGE);
             }
             catch(SQLException e)
             {
-                men ="Erros://"+e;
-                 System.out.println(men);
+                men ="Error://"+e;
+                JOptionPane.showMessageDialog(null,"Error:"+e,"Información",
+                                                    JOptionPane.WARNING_MESSAGE);
             }
             return men;
        

@@ -34,11 +34,15 @@ try{
             conexion.sentencia.setInt(4, poblacion_a_votar);
             conexion.sentencia.setInt(5, votos_totales);
             conexion.sentencia.execute();
+            
+         JOptionPane.showMessageDialog(null,"Registro Insertado","Información",
+                                                    JOptionPane.INFORMATION_MESSAGE);
             men= "Registro insertado";
         }
         catch (Exception e){
             men="Error sql "+e;
-            System.out.println(men);
+            JOptionPane.showMessageDialog(null,"Error:"+e,"Información",
+                                                    JOptionPane.WARNING_MESSAGE);
 
         }
 
@@ -61,11 +65,15 @@ return men;
             conexion.sentencia.execute();
             
             conexion.getConexion().close();
+            
+             JOptionPane.showMessageDialog(null,"REGISTRO ELIMINADO","Información",
+                                                    JOptionPane.INFORMATION_MESSAGE);
             }
             catch(SQLException e)
             {
                 men ="Error://"+e;
-                System.out.println(men);
+                JOptionPane.showMessageDialog(null,"Error:"+e,"Información",
+                                                    JOptionPane.WARNING_MESSAGE);
             }
             return men;
        
